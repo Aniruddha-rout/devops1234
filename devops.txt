@@ -1,0 +1,42 @@
+apt-get update
+apt-get install git -y
+
+jenkins:
+-----------
+-----------
+wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+apt-get install default-jdk y
+java -jar jenkins.war --httpPort=9090
+
+maven:
+apt-get install maven -y
+
+maven pipe line:
+
+---------------------
+node{
+    git 'https://github.com/amitvashist7/devops-sg-25092019.git'
+   
+sh label: '', script: 'mvn clean package  -f atmosphere/spring-boot-samples/spring-boot-sample-atmosphere/pom.xml'
+    
+}
+
+node:
+
+node ('worker01'){
+    
+    echo "Hello"
+}
+
+Ansible:
+
+apt-get install ansible -y
+ansible -doc -l
+
+ansible all -i inventory -m shell -a  'cat /etc/*=release' -u root -k
+ansible all -i inventory -m shell -a 'cat /etc/*=release' -u root -k
+ansible all -i inventory -m shell -a 'cat /etc/*-release' -u root -k
+ansible all -i inventory -m commnad -a 'hostname' -u root -k
+ansible all -i inventory -m command -a 'hostname' -u root -k
+ansible all -i inventory -m shell -a 'hostname' -u root -k
+ansible -doc
